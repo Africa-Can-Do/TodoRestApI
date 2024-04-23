@@ -2,14 +2,14 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import TodoSerializer
 from .models import Todo
-from rest_framework.generics import ListAPIView, RetrieveDestroyAPIView, CreateAPIView, DestroyAPIView
+from rest_framework.generics import ListAPIView, UpdateAPIView, CreateAPIView, DestroyAPIView
 
 
 class ListAllTodo(ListAPIView):
     serializer_class = TodoSerializer
     queryset = Todo.objects.all()
 
-class SingleTodo(RetrieveDestroyAPIView):
+class SingleTodo(UpdateAPIView):
     serializer_class = TodoSerializer
     queryset = Todo.objects.all()
 
