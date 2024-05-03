@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import CustomUser
-from todo_list.models import Todo
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,9 +8,21 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'first_name', 'last_name', 'email', 'department', 'phone_number']
         read_only_fields = ['username']
 
+from rest_framework import serializers
+from .models import CustomUser, Department
 
-class TodoSerializer(serializers.ModelSerializer):
+class UserRegistrationSerializer(serializers.ModelSerializer):
+    department_id = serializers.PrimaryKeyRelatedField(queryset=Department.objects.all())
+
     class Meta:
-        model = Todo
-        fields = '__all__'
+        model = CustomUser
+        fields = ['first_name', 'last_name', 'email', 'phone_number', 'password', 'department_id']
+
+    def create(self, validated_data):
+        department_id = validated_data.pop('department_id')
+        user = CustomUser.objects.create_user(department_id=department_id, **validated_data)
+        return user
+
+
+
 

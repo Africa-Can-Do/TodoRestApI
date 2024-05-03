@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'account.apps.AccountConfig',
-    'todo_list.apps.TodoListConfig',
+    
     
 ]
 
@@ -138,3 +138,12 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
 }
 
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587  # Use 587 for TLS
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = 'mandey0104@gmail.com'
+EMAIL_HOST_PASSWORD = 'xfhr dyxi gfey oqnn'
+DEFAULT_FROM_EMAIL = 'mandey0104@gmail.com'
