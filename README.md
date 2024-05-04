@@ -1,7 +1,7 @@
 # ToDoListApi
 
 Todo for ToDoListApi
-- [ ] Have a proper schema/models with proper relations
+- [x] Have a proper schema/models with proper relations
 - [ ] Registration should take the following: Firstname, Lastname, Email, Phone number, Password, Confirm Password, Department(Should 
       be pre-populated, so the user just passes a department ID which matches a valid one in the department table). Username is
       automatically generated and saved in DB by using first letter of firstname and joining with lastname. Eg. if firstname is
@@ -10,6 +10,6 @@ Todo for ToDoListApi
       address before considered active. IsActive should be set to false(0) until email is verified.
 - [ ] Authentication using JWT: user can login in with email/username and password.
 - [ ] User should be able to reset/change password
-- [ ] There should be the following roles: user, admin
-- [ ] Users should only be able to perform CRUD on todos they are associated with
-- [ ] Admins have full CRUD privileges
+- [x] There should be the following roles: user, admin
+- [x] Users should only be able to perform CRUD on todos they are associated with
+- [x] Admins have full CRUD privileges
