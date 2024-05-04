@@ -3,14 +3,14 @@
         "model": "accounts.department",
         "pk": 1,
         "fields": {
-            "name": "Department 1"
+            "name": "Engineering"
         }
     },
     {
         "model": "accounts.department",
         "pk": 2,
         "fields": {
-            "name": "Department 2"
+            "name": "IT"
         }
     }
 ]
