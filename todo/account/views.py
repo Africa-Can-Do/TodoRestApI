@@ -1,4 +1,4 @@
-from rest_framework import generics, status
+from rest_framework import generics, status, permissions
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.shortcuts import redirect
@@ -6,7 +6,7 @@ from django.views import View
 from .models import CustomUser
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework.views import APIView
-from .serializers import UserSerializer, UserRegistrationSerializer
+from .serializers import UserSerializer, UserRegistrationSerializer, PasswordResetSerializer
 from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -64,6 +64,21 @@ class VerifyEmailView(View):
         except CustomUser.DoesNotExist:
             return redirect('/invalid-token/')
         
+class PasswordChangeAPIView(generics.UpdateAPIView):
+    serializer_class = PasswordResetSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response({"message": "Password changed successfully."}, status=status.HTTP_200_OK)        
+
 def verified(request):
     return HttpResponse("Email verified successfully.")
 
