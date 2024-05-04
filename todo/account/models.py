@@ -11,7 +11,7 @@ class Department(models.Model):
         return self.name
     
 class CustomUser(AbstractUser):
-    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, blank=True, null=True)
     phone_number = models.CharField(max_length=20)
     is_verified = models.BooleanField(default=False)
     verification_token = models.CharField(max_length=100, blank=True, null=True)
