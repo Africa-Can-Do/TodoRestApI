@@ -1,5 +1,9 @@
 from rest_framework import serializers
 from .models import CustomUser
+from rest_framework import serializers
+from django.contrib.auth.models import User
+from rest_framework import serializers
+from .models import CustomUser, Department
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -8,8 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'first_name', 'last_name', 'email', 'department', 'phone_number']
         read_only_fields = ['username']
 
-from rest_framework import serializers
-from .models import CustomUser, Department
+
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
     department_id = serializers.PrimaryKeyRelatedField(queryset=Department.objects.all())
@@ -24,8 +27,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         return user
 
 
-from rest_framework import serializers
-from django.contrib.auth.models import User
+
 
 class PasswordResetSerializer(serializers.Serializer):
     old_password = serializers.CharField(required=True)

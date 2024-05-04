@@ -58,7 +58,7 @@ class VerifyEmailView(View):
         token = request.GET.get('token')
         try:
             user = CustomUser.objects.get(verification_token=token)
-            user.is_verified = True
+            user.is_active = True
             user.save()
             return redirect('/verified/')
         except CustomUser.DoesNotExist:
