@@ -9,6 +9,7 @@ from rest_framework.views import APIView
 from .serializers import UserSerializer, UserRegistrationSerializer
 from django.shortcuts import render
 from django.http import HttpResponse
+from rest_framework_simplejwt.views import TokenObtainPairView
 from utils.helpers import send_verification_email
 
 class UserRegistrationAPIView(generics.CreateAPIView):
@@ -47,7 +48,10 @@ class TokenAPIView(APIView):
             "refresh": str(refresh),
             "access": str(refresh.access_token),
         }, status=status.HTTP_200_OK)
-    
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = TokenObtainPairSerializer
+   
 
 class VerifyEmailView(View):
     def get(self, request):
