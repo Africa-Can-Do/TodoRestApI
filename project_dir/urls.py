@@ -16,12 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from accounts.views import ConfirmAccountComplete
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("register/", include("accounts.urls")),
     path("api/", include("todos.urls")),
     path("api-auth/", include("rest_framework.urls")),
     path("api/users/", include("dj_rest_auth.urls")),
+    path("api/users/registration/account-confirm-email/<str:key>/", ConfirmAccountComplete.as_view()),
     path("api/users/registration/", include("dj_rest_auth.registration.urls")),
 ]

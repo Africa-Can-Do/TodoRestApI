@@ -12,6 +12,13 @@
         "fields": {
             "name": "IT"
         }
+    },
+    {
+        "model": "accounts.department",
+        "pk": 3,
+        "fields": {
+            "name": "Finance"
+        }
     }
 ]
 

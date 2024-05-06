@@ -157,4 +157,7 @@ REST_AUTH = {
     "USE_JWT": True,
     "JWT_AUTH_COOKIE": "todo-auth",
     "JWT_AUTH_REFRESH_COOKIE": "refresh-token",
+    "REGISTER_SERIALIZER": "accounts.serializers.CustomRegisterSerializer"
 }
+
+ACCOUNT_ADAPTER = "accounts.adapter.CustomAccountAdapter"
