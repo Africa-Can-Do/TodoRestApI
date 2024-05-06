@@ -1,9 +1,8 @@
 from django.urls import path
-from .views import TodoListCreateAPIView, TodoDetailAPIView, TodoAdminBulkDeleteAPIView, TodoAdminListAPIView
+from rest_framework.routers import SimpleRouter
+from .views import TodoListViewSet
 
-urlpatterns = [
-    path('todos/', TodoListCreateAPIView.as_view(), name='todo-list-create'),
-    path('todos/<int:pk>/', TodoDetailAPIView.as_view(), name='todo-detail'),
-    path('admin/todos/', TodoAdminListAPIView.as_view(), name='todo-admin-list'),
-    path('admin/todos/bulk-delete/', TodoAdminBulkDeleteAPIView.as_view(), name='todo-admin-bulk-delete'),
-]
+router = SimpleRouter()
+router.register("todo", TodoListViewSet, basename="todo")
+
+urlpatterns = router.urls
