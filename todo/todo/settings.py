@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'drf_spectacular',
     'account.apps.AccountConfig',
-
     'todolist.apps.TodolistConfig',
 ]
 
@@ -133,6 +133,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema'
 }
 
 SIMPLE_JWT = {
@@ -149,3 +150,9 @@ EMAIL_USE_SSL = False
 EMAIL_HOST_USER = 'mandey0104@gmail.com'
 EMAIL_HOST_PASSWORD = 'xfhr dyxi gfey oqnn'
 DEFAULT_FROM_EMAIL = 'mandey0104@gmail.com'
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Todo REST API',
+    'DESCRIPTION': 'API for creating todos',
+    'VERSION': '1.0.0'
+}
