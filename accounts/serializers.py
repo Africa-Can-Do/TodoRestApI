@@ -17,6 +17,7 @@ class CustomRegisterSerializer(RegisterSerializer):
         data_dict["email"] = self.validated_data.get("email")
         data_dict["phone"] = self.validated_data.get("phone")
         data_dict["department"] = self.validated_data.get("department")
+        data_dict["username"] = f"{data_dict["firstname"][0].lower()}{data_dict["lastname"].lower()}"
         return data_dict
 
     # def custom_signup(self, request, user):
@@ -28,11 +29,6 @@ class CustomRegisterSerializer(RegisterSerializer):
     #     user.save(update_fields=["firstname", "lastname", "email", "phone", "department"])
 
     def create(self, validated_data):
-        firstname = validated_data.pop("firstname")
-        lastname = validated_data.pop("lastname")
-        username = f"{firstname[0].lower()}{lastname.lower()}"
-        validated_data["username"] = username
-
         department_id = validated_data.pop("department")
         validated_data["department"] = department_id
 

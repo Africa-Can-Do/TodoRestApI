@@ -21,6 +21,7 @@ class CustomUserManager(BaseUserManager):
     def create_superuser(self, email, firstname, lastname, phone, department_id, password=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_active', True)
         return self.create_user(email, firstname, lastname, phone, department_id, password, **extra_fields)
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
@@ -30,7 +31,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     phone = models.CharField(max_length=15)
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     username = models.CharField(max_length=100, unique=True)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
