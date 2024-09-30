@@ -1,8 +1,7 @@
-"""
-URL configuration for project_dir project.
+"""todoApp URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.0/topics/http/urls/
+    https://docs.djangoproject.com/en/2.2/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -16,13 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from accounts.views import ConfirmAccountComplete
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from . import settings, views
 
 urlpatterns = [
+    path('todos/', include('todos.urls')),
     path('admin/', admin.site.urls),
-    path("api/", include("todos.urls")),
-    path("api-auth/", include("rest_framework.urls")),
-    path("api/users/", include("dj_rest_auth.urls")),
-    path("api/users/registration/account-confirm-email/<str:key>/", ConfirmAccountComplete.as_view()),
-    path("api/users/registration/", include("dj_rest_auth.registration.urls")),
-]
+    path('', views.index)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += staticfiles_urlpatterns()
